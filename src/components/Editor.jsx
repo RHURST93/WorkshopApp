@@ -55,6 +55,39 @@ const MonacoEditor = () => {
         localStorage.setItem('savedCode', newCode);
       }
     });
+    // Register an HTML completion provider for auto-closing tags
+    monaco.languages.registerCompletionItemProvider('html', {
+      provideCompletionItems: (model, position) => {
+        const textUntilPosition = model.getValueInRange({
+          startLineNumber: position.lineNumber,
+          startColumn: 1,
+          endLineNumber: position.lineNumber,
+          endColumn: position.column,
+        });
+
+        const match = textUntilPosition.match(/<([a-zA-Z0-9-]+)(\s[^>]*)?>$/);
+        if (!match) {
+          return { suggestions: [] };
+        }
+
+        const tag = match[1];
+        return {
+          suggestions: [
+            {
+              label: `</${tag}>`,
+              kind: monaco.languages.CompletionItemKind.Snippet,
+              insertText: `</${tag}>`,
+              range: {
+                startLineNumber: position.lineNumber,
+                startColumn: position.column,
+                endLineNumber: position.lineNumber,
+                endColumn: position.column,
+              },
+            },
+          ],
+        };
+      },
+    });
 
     return () => {
       subscription.dispose();
