@@ -8,6 +8,7 @@ import {
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css'; // Import Prism.js CSS theme
 import 'prismjs/components/prism-css'; // Import CSS syntax highlighting
+import 'prismjs/components/prism-javascript'; 
 
 function List() {
   const [open, setOpen] = useState(''); // Initialize state with an empty string
@@ -15,6 +16,30 @@ function List() {
   useEffect(() => {
     Prism.highlightAll();
   }, []);
+
+  const jsCode = `
+  //javascript functions
+  // both of these functions do the same thing.
+
+  const greet = (name) => {
+    return 'Hello, ' + name + '!';
+  }
+
+  function greet(name) {
+    return 'Hello, ' + name + '!';
+  }
+  
+  console.log(greet('World'));
+
+  //JavaScript Variables
+  //all three of these variables do the same thing. 
+  //All can be changed except a variable with the const keyword.
+
+  var myVar = 'Hello World';
+  let myVar = 'Hello World';
+  const myVar = 'Hello World';
+  console.log(myVar);
+  `
 
   const cssCode = `
 /* This is a CSS comment */
@@ -141,7 +166,33 @@ p {
         <CAccordionItem itemKey={3}>
           <CAccordionHeader onClick={() => toggle(3)}>JavaScript</CAccordionHeader>
           <CAccordionBody>
-            {/* Content for Accordion Item #3 */}
+            <h2 className='underline-h1'>JavaScript Basics</h2>
+            <p>JavaScript is a language that brings web pages to life by making them interactive and dynamic. It can handle tasks from basic calculations to complex web applications, both in the browser and on the server.
+               With its wide range of capabilities, it's an essential tool for modern web development.</p>
+               <h4 className='underline-h1'>Functions and Variables</h4>
+            <pre><code className='language-javascript'>{jsCode}</code></pre>
+            <p className='pt-3'>A JavaScript function consist of the function declaration or the const keyword if you are using 
+              an arrow function, the name of the function, the parameters, and the function body. 
+              <h4 className='underline-h1 pt-3'>Function Parameters</h4>
+              <p>In JavaScript, a function parameter acts as a placeholder for values that are
+                 passed into the function when it is called. Parameters allow you to pass information 
+                 into functions, enabling 
+                them to perform tasks using different inputs. For example, in the example above, 
+                in both of the greet functions "name" is passed as a parameter. The greet function is then
+                 called 
+                in the console.log() statement which prints to the console, with the string 'World' as the argument. 
+              </p>
+              <h4 className='underline-h1 pt-3'>JavaScript Variables</h4>
+              <p>In JavaScript, a variable is a container that stores data values. Variables are fundamental to programming 
+                as they allow you to save, manipulate, and retrieve data throughout your code.
+                JavaScript has three types of variables:
+              </p>
+              <ul>
+                <li>var</li>
+                <li>let</li>
+                <li>const - This variable cannot be changed after being declared.</li>
+              </ul>
+            </p>
           </CAccordionBody>
         </CAccordionItem>
       </CAccordion>
