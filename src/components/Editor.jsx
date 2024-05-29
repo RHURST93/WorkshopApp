@@ -58,6 +58,7 @@ const MonacoEditor = () => {
       }
     }
   };
+  
 
   useEffect(() => {
     const savedCode = localStorage.getItem('savedCode') || `<!DOCTYPE html>
