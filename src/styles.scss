@@ -1,0 +1,17 @@
+// coreui-accordion.scss
+
+// Import Core UI styles if needed
+
+
+
+
+// Define SCSS variables for custom styling
+$accordion-button-bg-color: black;
+$accordion-button-text-color: white;
+
+// Customize accordion buttons using SCSS variables
+.custom-accordion-button {
+  background-color: $accordion-button-bg-color;
+  color: $accordion-button-text-color;
+}
+

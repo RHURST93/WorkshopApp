@@ -9,9 +9,10 @@ import Prism from 'prismjs';
 import 'prismjs/themes/prism.css'; // Import Prism.js CSS theme
 import 'prismjs/components/prism-css'; // Import CSS syntax highlighting
 import 'prismjs/components/prism-javascript'; 
+import '../styles.scss';
 
 function List() {
-  const [open, setOpen] = useState(''); // Initialize state with an empty string
+  const [open, setOpen] = useState('');
 
   useEffect(() => {
     Prism.highlightAll();
@@ -60,21 +61,16 @@ p {
   `;
 
   const toggle = (id) => {
-    setOpen((prevState) => (prevState === id ? '' : id)); // Toggle state based on previous state
+    setOpen((prevState) => (prevState === id ? '' : id));
   };
   
-  const accordionStyle = {
-    '--cui-accordion-color': 'black', // Custom text color for accordion
-    '--cui-accordion-bg': 'black', // Custom background color for accordion
-  };
-
   return (
-    <div className='container-fluid bg-dark'>
-      <CAccordion style={accordionStyle} activeItemKey={open}>
+    <div className='container-fluid bg-dark pb-4'>
+      <CAccordion  activeItemKey={open}>
         <CAccordionItem itemKey={1}>
-          <CAccordionHeader onClick={() => toggle(1)}>HTML Tags</CAccordionHeader>
+          <CAccordionHeader className='custom-accordion-button' onClick={() => toggle(1)}>HTML Tags</CAccordionHeader>
           <CAccordionBody>
-            <p>
+          <p>
               The first step of developing an HTML webpage is setting up your document. Here are many important tags used to structure
               an HTML document.
               <ul>
@@ -138,9 +134,9 @@ p {
           </CAccordionBody>
         </CAccordionItem>
         <CAccordionItem itemKey={2}>
-          <CAccordionHeader onClick={() => toggle(2)}>CSS Properties</CAccordionHeader>
+          <CAccordionHeader className='custom-accordion-button' onClick={() => toggle(2)}>CSS Properties</CAccordionHeader>
           <CAccordionBody>
-            <p>
+          <p>
               While HTML is an essential building block of the web, it would not be much without a way to style our elements.
               CSS allows us to add style to our webpage. There are many CSS properties that can be used to style an HTML element.
               Here are a few of the most commonly used CSS properties:
@@ -164,9 +160,9 @@ p {
           </CAccordionBody>
         </CAccordionItem>
         <CAccordionItem itemKey={3}>
-          <CAccordionHeader onClick={() => toggle(3)}>JavaScript</CAccordionHeader>
+          <CAccordionHeader className='custom-accordion-button' onClick={() => toggle(3)}>JavaScript</CAccordionHeader>
           <CAccordionBody>
-            <h2 className='underline-h1'>JavaScript Basics</h2>
+          <h2 className='underline-h1'>JavaScript Basics</h2>
             <p>JavaScript is a language that brings web pages to life by making them interactive and dynamic. It can handle tasks from basic calculations to complex web applications, both in the browser and on the server.
                With its wide range of capabilities, it's an essential tool for modern web development.</p>
                <h4 className='underline-h1'>Functions and Variables</h4>

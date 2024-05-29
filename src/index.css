@@ -1,1 +1,8 @@
 @import 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css';
+
+:root {
+    --cui-accordion-btn-bg: #000; /* Black background for the accordion button */
+    --cui-accordion-bg: #fff; /* White background for the accordion body */
+  }
+  @import '~@coreui/coreui/scss/coreui';
+

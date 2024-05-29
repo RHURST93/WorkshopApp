@@ -1,0 +1,16 @@
+/* styles.css */
+.accordion-custom {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .accordion-custom .accordion-header {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .accordion-custom .accordion-body {
+    background-color: #000;
+    color: #fff;
+  }
+  
