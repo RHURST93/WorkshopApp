@@ -41,7 +41,7 @@ const GroupChat = () => {
   };
 
   return (
-    <div className="container-fluid bg-dark " >
+    <div className="container-fluid bg-dark pb-4 " >
       <div className="row justify-content-center ">
         <div className="col-md-8">
           <div className="card">

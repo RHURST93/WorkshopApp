@@ -7,7 +7,7 @@ const MonacoEditor = () => {
   const outputRef = useRef(null);
   const [code, setCode] = useState('');
 
-  const handleEditorDidMount = (editor, monaco) => {
+  const handleEditorDidMount = (editor) => {
     editorRef.current = editor;
   };
 
@@ -44,8 +44,8 @@ const MonacoEditor = () => {
           jsCode = inputCode.substring(scriptStartIndex + 8, scriptEndIndex);
         }
 
-        const compiledJsCode = Babel.transform(jsCode, { presets: ['env'], sourceType: 'script', comments: false }).code;
-        const combinedCode = inputCode.replace(jsCode, compiledJsCode);
+        const compiledJsCode = Babel.transform(jsCode, { presets: ['env'], sourceType: 'script' }).code;
+        const combinedCode = inputCode.substring(0, scriptStartIndex + 8) + compiledJsCode + inputCode.substring(scriptEndIndex);
 
         if (outputRef.current) {
           const outputDoc = outputRef.current.contentDocument || outputRef.current.contentWindow.document;
@@ -58,38 +58,69 @@ const MonacoEditor = () => {
       }
     }
   };
-  
 
   useEffect(() => {
     const savedCode = localStorage.getItem('savedCode') || `<!DOCTYPE html>
-<html>
-<head>
-  <title>HTML Preview</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #f0f0f0;
-    }
-  </style>
-</head>
-<body>
-  <h1>Hello, world!</h1>
-  <script>
-    console.log('Hello, world!');
-  </script>
-</body>
-</html>`;
+    <html>
+    <head>
+      <title>Center Items with Flexbox</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          padding: 20px;
+          background-color: #3285a8; /* Blue background */
+          margin: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center; /* Center vertically */
+          height: 100vh; /* Full viewport height */
+        }
+        .container {
+          display: flex;
+          flex-direction: column; /* Stack child items vertically */
+          align-items: center; /* Center-align child items horizontally */
+          background-color: yellow;
+          padding: 20px;
+          border-radius: 5px;
+        }
+        .container2 {
+          margin-top: 20px; /* Space between the two divs */
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <h1>Hello, world!</h1>
+        <div class="container2">
+          <!-- Content for the second div will be added here -->
+        </div>
+        <script>
+          const message = 'Hello, world!';
+          console.log(message);
+          // Append the message to the second div
+          document.querySelector('.container2').innerHTML = '<p>' + message + '</p>';
+        </script>
+      </div>
+    </body>
+    </html>
+    `;
 
     setCode(savedCode);
+  }, []);
+
+  useEffect(() => {
+    if (editorRef.current) {
+      editorRef.current.onDidChangeModelContent(() => {
+        localStorage.setItem('savedCode', editorRef.current.getValue());
+      });
+    }
   }, []);
 
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
       <Editor
         height="100vh"
-        width= "50%"
-        ref={editorRef}
+        width="50%"
         defaultLanguage="html"
         value={code}
         theme="vs-dark"

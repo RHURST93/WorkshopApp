@@ -17,7 +17,7 @@ import Editor from './components/Editor'
 import PlaygroundEditor from './components/Editor'
 import Monacoeditor from './components/Editor'
 import MonacoEditor from './components/Editor'
-
+import Footer from './components/Footer'
 
 
 function App() {
@@ -30,6 +30,7 @@ function App() {
       <MonacoEditor />
       <List />
       <GroupChat />
+      <Footer />
       
     </>
   )
