@@ -14,7 +14,7 @@ To install follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/RHURST93/Workshop.git
+   git clone https://github.com/RHURST93/WorkshopApp.git
    ```
 
 2. Navigate to the project directory:
